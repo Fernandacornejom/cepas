@@ -1,0 +1,2 @@
+class Cepa < ApplicationRecord
+end
