@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_28_134304) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_28_140204) do
   create_table "cepas", force: :cascade do |t|
     t.string "name"
     t.boolean "avalaible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "vino_cepas", force: :cascade do |t|
+    t.integer "vino_id", null: false
+    t.integer "cepa_id", null: false
+    t.float "porcentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cepa_id"], name: "index_vino_cepas_on_cepa_id"
+    t.index ["vino_id"], name: "index_vino_cepas_on_vino_id"
   end
 
   create_table "vinos", force: :cascade do |t|
@@ -24,4 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_134304) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "vino_cepas", "cepas"
+  add_foreign_key "vino_cepas", "vinos"
 end
