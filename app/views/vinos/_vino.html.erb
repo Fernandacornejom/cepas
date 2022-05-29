@@ -3,5 +3,9 @@
     <strong>Name:</strong>
     <%= vino.name %>
   </p>
+  <p>
+    <strong>Cepas:</strong>
+    <%= vino.cepas.order(:name).map(&:name).join(", ") %>
+  </p>
 
 </div>
